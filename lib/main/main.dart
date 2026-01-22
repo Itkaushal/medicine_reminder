@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'AppTheme.dart';
-import 'home_screen.dart';
-import 'medicine.dart';
-import 'medicine_provider.dart';
-import 'medicine_repository.dart';
-import 'notification_service.dart';
+import '../screen/home_screen.dart';
+import '../model/medicine.dart';
+import '../provider/medicine_provider.dart';
+import '../data/medicine_repository.dart';
+import '../service/notification_service.dart';
 
 
 Future<void> main() async {

@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'medicine.dart';
-import 'medicine_repository.dart';
-import 'notification_service.dart';
+import '../model/medicine.dart';
+import '../data/medicine_repository.dart';
+import '../service/notification_service.dart';
 
 
 final medicineRepositoryProvider = Provider<MedicineRepository>((ref) {

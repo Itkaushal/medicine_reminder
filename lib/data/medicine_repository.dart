@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import 'medicine.dart';
+import '../model/medicine.dart';
 
 class MedicineRepository {
   final Box<Medicine> box;
