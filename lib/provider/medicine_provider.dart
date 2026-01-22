@@ -27,6 +27,8 @@ class MedicineNotifier extends StateNotifier<List<Medicine>> {
 
   Future<void> addMedicine(Medicine medicine) async {
     await repository.addMedicine(medicine);
+    state = [...state, medicine];
+    loadMedicines();
 
     final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
 
@@ -35,8 +37,7 @@ class MedicineNotifier extends StateNotifier<List<Medicine>> {
       medicineName: medicine.name,
       time: medicine.time,
     );
-
-    loadMedicines();
   }
+
 
 }

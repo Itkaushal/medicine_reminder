@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'AppTheme.dart';
-import '../screen/home_screen.dart';
-import '../model/medicine.dart';
-import '../provider/medicine_provider.dart';
-import '../data/medicine_repository.dart';
-import '../service/notification_service.dart';
 
+import 'AppTheme.dart';
+import 'screen/home_screen.dart';
+import 'model/medicine.dart';
+import 'provider/medicine_provider.dart';
+import 'data/medicine_repository.dart';
+import 'service/notification_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await NotificationService.init();
-
   await Hive.initFlutter();
-  Hive.registerAdapter(MedicineAdapter());
+
+  if (!Hive.isAdapterRegistered(MedicineAdapter().typeId)) {
+    Hive.registerAdapter(MedicineAdapter());
+  }
 
   final medicineBox = await Hive.openBox<Medicine>('medicinesBox');
 
@@ -31,7 +32,6 @@ Future<void> main() async {
   );
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       title: 'Medicine Reminder',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

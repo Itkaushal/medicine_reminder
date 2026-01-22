@@ -35,11 +35,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Medicine Reminder"),
+        centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => AddMedicineScreen()),
+          MaterialPageRoute(builder: (_) => const AddMedicineScreen()),
         ),
         child: const Icon(Icons.add),
       ),
@@ -47,18 +48,44 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ? const Center(
         child: Text(
           "No medicines added yet",
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.grey, fontSize: 16),
         ),
       )
           : ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 8),
         itemCount: medicines.length,
-        itemBuilder: (_, index) {
+        itemBuilder: (context, index) {
           final med = medicines[index];
-          return ListTile(
-            leading: const Icon(Icons.medication, color: Colors.teal),
-            title: Text(med.name),
-            subtitle: Text(
-              "${med.dose} • ${TimeOfDay.fromDateTime(med.time).format(context)}",
+
+          final timeText =
+          TimeOfDay.fromDateTime(med.time).format(context);
+
+          return Padding(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: ListTile(
+                leading: const Icon(
+                  Icons.medication,
+                  color: Colors.teal,
+                  size: 28,
+                ),
+                title: Text(
+                  med.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(med.dose),
+                trailing: Chip(
+                  label: Text(timeText),
+                  backgroundColor: Colors.teal.shade50,
+                ),
+              ),
             ),
           );
         },

@@ -30,7 +30,7 @@ class _AddMedicineScreenState
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            /// Header Card
+            // header
             Card(
               elevation: 2,
               shape: RoundedRectangleBorder(
@@ -60,7 +60,7 @@ class _AddMedicineScreenState
 
             const SizedBox(height: 20),
 
-            /// Form Card
+           // form
             Card(
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -107,7 +107,7 @@ class _AddMedicineScreenState
                       ),
                       const SizedBox(height: 20),
 
-                      /// Time Picker Button
+                      // time picker button
                       SizedBox(
                         width: double.infinity,
                         child: OutlinedButton.icon(
@@ -129,7 +129,6 @@ class _AddMedicineScreenState
 
                       const SizedBox(height: 12),
 
-                      /// Selected Time Chip
                       if (selectedTime != null)
                         Chip(
                           avatar: const Icon(
@@ -149,7 +148,6 @@ class _AddMedicineScreenState
 
             const SizedBox(height: 30),
 
-            /// Save Button
             SizedBox(
               width: double.infinity,
               height: 52,

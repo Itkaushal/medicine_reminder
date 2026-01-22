@@ -7,13 +7,21 @@ class MedicineRepository {
 
   MedicineRepository(this.box);
 
+  // get all medicine list.
   List<Medicine> getMedicines() {
     final list = box.values.toList();
-    list.sort((a, b) => a.time.compareTo(b.time));
+    list.sort((a, b) {
+      final aMinutes = a.time.hour * 60 + a.time.minute;
+      final bMinutes = b.time.hour * 60 + b.time.minute;
+      return aMinutes.compareTo(bMinutes);
+    });
     return list;
   }
 
+  // add medicine fun.
   Future<void> addMedicine(Medicine medicine) async {
     await box.add(medicine);
   }
+
+
 }
